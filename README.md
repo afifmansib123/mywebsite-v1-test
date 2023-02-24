@@ -1,4 +1,4 @@
-paragraph1 :
+2-24-23
 
 initially created the app with
 *npx create-next-app
@@ -51,3 +51,57 @@ _app.js is a special file in Next.js that is used to initialize the application 
 In the MyApp function defined in _app.js, you are accepting two props: Component and pageProps. Component refers to the current page component that is being rendered, and pageProps are the initial props that are passed to that component. You are returning a JSX element that wraps the Component with the Layout component, passing in the pageProps as well.
 
 Overall, the combination of Layout.js and _app.js allows you to define a consistent layout structure for your Next.js application, which can help improve the user experience and make it easier to maintain your code.
+
+
+2-25-23
+
+A great change today was in the Navbar :
+
+import React from 'react'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
+
+
+function NavBar() {
+
+    const router = useRouter()
+    const isActive = (r) => {
+        if(r === router.pathname){
+            return "active"
+        }else{
+            return ""
+        }
+    }
+
+    return (
+        <div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <Link legacyBehavior href="/">
+                <a className="navbar-brand">Amdani-Roptani</a>
+                </Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <Link legacyBehavior href = "/cart">
+                            <a className={"nav-link" + isActive('/cart')}>
+                                <i class="fa-duotone fa-cart-shopping"></i>Cart<span className="sr-only">(current)</span>
+                            </a>
+                            </Link>
+                        </li>
+                        <li className="nav-item active">
+                            <Link legacyBehavior href = "/signin">
+                            <a className={"nav-link" + isActive('/signin')}>
+                                <i class="fa-solid fa-user"></i>Sign-in<span className="sr-only">(current)</span>
+                                </a>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    )
+}
+export default NavBar
