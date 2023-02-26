@@ -21,21 +21,21 @@ function NavBar() {
                 <a className="navbar-brand">Amdani-Roptani</a>
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon" aria-hidden="true"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
                             <Link legacyBehavior href = "/cart">
                             <a className={"nav-link" + isActive('/cart')}>
-                                <i class="fa-duotone fa-cart-shopping"></i>Cart<span className="sr-only">(current)</span>
+                                <i className="fa-duotone fa-cart-shopping" aria-hidden="true"></i>Cart<span className="sr-only">(current)</span>
                             </a>
                             </Link>
                         </li>
                         <li className="nav-item active">
                             <Link legacyBehavior href = "/signin">
                             <a className={"nav-link" + isActive('/signin')}>
-                                <i class="fa-solid fa-user"></i>Sign-in<span className="sr-only">(current)</span>
+                                <i className="fa-solid fa-user" aria-hidden="true"></i>Sign-in<span className="sr-only">(current)</span>
                                 </a>
                             </Link>
                         </li>
