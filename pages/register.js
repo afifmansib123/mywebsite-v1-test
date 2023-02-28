@@ -1,10 +1,15 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import Link from 'next/link'
+import Head from 'next/head'
+import React, { useState , useContext} from "react";
+import valid from '@/utils/valid'
+import { DataContext } from '../store/GlobalState';
 
 const Register = () => {
-  const initialState = { name: "", email: "", password: "", cf_password: "" };
+  const initialState = { name: '', email: '', password: '', cf_password: '' };
   const [userData, setUserData] = useState(initialState);
   const { name, email, password, cf_password } = userData;
+
+  const [state , dispatch] = useContext(DataContext)
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -13,7 +18,10 @@ const Register = () => {
 
   const handlesubmit = (e) => {
     e.preventDefault()
-    console.log(userData)
+    const errMsg = valid(name, email, password , cf_password)
+    if(errMsg) return dispatch({type : 'NOTIFY', payload : {error:errMsg} })
+  
+    dispatch({type : 'NOTIFY', payload: {success: 'OK'}})
   }
 
   return (
