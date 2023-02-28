@@ -1,6 +1,6 @@
 module.exports = {
   env : {
-    "BASE-URL" : "http://localhost:3000",
-    "MONGODB_URI" : "mongodb+srv://afif:<password>@mywebsite.ambpebi.mongodb.net/mywebsitev1"
+    "BASE_URL" : "http://localhost:3000",
+    "MONGODB_URL" : "mongodb+srv://afif:einstein14thmarch@mywebsite.ambpebi.mongodb.net"
   }
 }

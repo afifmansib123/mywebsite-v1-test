@@ -9,9 +9,22 @@ const Notify = () => {
 
     return(
         <> 
-            {notify.Loading && <Loading/>}
-            {notify.error && <Toast/>}
-            {notify.sucess && <Toast/>}
+            {notify.loading && <Loading />}
+            {notify.error && 
+                <Toast
+                    msg={{ msg: notify.error, title: "Error" }}
+                    handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
+                    bgColor="bg-danger"
+                />
+            }
+
+            {notify.success && 
+                <Toast
+                    msg={{ msg: notify.success, title: "Success" }}
+                    handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
+                    bgColor="bg-success"
+                />
+            }
         </>
     )
 }

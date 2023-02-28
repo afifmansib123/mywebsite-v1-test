@@ -3,6 +3,7 @@ import Head from 'next/head'
 import React, { useState , useContext} from "react";
 import valid from '@/utils/valid'
 import { DataContext } from '../store/GlobalState';
+import { postData } from '@/utils/fetchData';
 
 const Register = () => {
   const initialState = { name: '', email: '', password: '', cf_password: '' };
@@ -12,16 +13,21 @@ const Register = () => {
   const [state , dispatch] = useContext(DataContext)
 
   const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+    const { name, value } = e.target
+    setUserData({ ...userData, [name]: value })
+    dispatch({type : 'NOTIFY', payload: {}})
   };
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault()
     const errMsg = valid(name, email, password , cf_password)
     if(errMsg) return dispatch({type : 'NOTIFY', payload : {error:errMsg} })
   
-    dispatch({type : 'NOTIFY', payload: {success: 'OK'}})
+    dispatch({type : 'NOTIFY', payload: {loading: true}})
+
+    const res = await postData('auth/register', userData)
+
+    console.log(res)
   }
 
   return (
